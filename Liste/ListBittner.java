@@ -125,13 +125,9 @@ public class ListBittner extends ListBaseClass
          aktuell = oldAkt;
       }
    }
-   
+      
    @Override
-   public void concat(ListBaseClass pList) {
-	   concat((ListBittner)pList);
-   }
-   
-   private void concat(ListBittner pList)
+   public void concat(ListBaseClass pList)
    {
       if(pList != null)
       {
