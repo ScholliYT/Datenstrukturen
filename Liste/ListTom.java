@@ -118,4 +118,18 @@ public class ListTom extends ListBaseClass {
 		}
 		return size;
 	}
+	
+	public Object[] toArray() {
+		Object[] o = new Object[size()];
+		Node c = start;
+		int i = 0;
+		while(c != null) {
+			o[i] = c.getObject();
+			i++;
+			c = c.getNextNode();
+		}
+		System.out.println();
+		return o;
+	}
 }
+

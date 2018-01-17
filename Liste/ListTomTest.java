@@ -25,5 +25,18 @@ public class ListTomTest extends ListTests {
 		l.remove();
 		assertEquals(1, ((ListTom)l).size());
 	}
+	
+	@SuppressWarnings("deprecation") //TODO: Fix this
+	@Test
+	public void toArrayTest() {
+		assertEquals(new Object[] {}, ((ListTom)l).toArray());
+		l.append("A");
+		assertEquals(new Object[] {"A"}, ((ListTom)l).toArray());
+		l.append("B");
+		assertEquals(new Object[] {"A", "B"}, ((ListTom)l).toArray());
+		l.toFirst();
+		l.remove();
+		assertEquals(new Object[] {"B"}, ((ListTom)l).toArray());
+	}
 
 }
