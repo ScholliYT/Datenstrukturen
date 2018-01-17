@@ -108,4 +108,14 @@ public class ListTom extends ListBaseClass {
 			}
 		}
 	}
+	
+	public int size() {
+		int size = 0;
+		Node c = start;
+		while(c != null) {
+			size++;
+			c = c.getNextNode();
+		}
+		return size;
+	}
 }
