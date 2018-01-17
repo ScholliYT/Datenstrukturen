@@ -1,0 +1,10 @@
+
+Liste/\.classpath
+
+Liste/\.idea/
+
+Liste/\.project
+
+*.class
+
+*.~ava
