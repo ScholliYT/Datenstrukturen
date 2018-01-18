@@ -129,10 +129,39 @@ public abstract class ListTests {
         assertEquals("zwischen B und C", l.getObject());
         l.next();
         assertEquals("C", l.getObject());
+        
+        
+        
+        l.toFirst();
+        l.next();
+        l.insert("zwischen A und B");
+        assertEquals("B", l.getObject());
+        
+        l.toFirst();
+        assertEquals("A", l.getObject());
+        l.next();
+        assertEquals("zwischen A und B", l.getObject());
+        l.next();
+        assertEquals("B", l.getObject());
+        l.next();
+        assertEquals("zwischen B und C", l.getObject());
+        l.next();
+        assertEquals("C", l.getObject());
     }
     
     @Test
     public void insertTestOneElement() {
+    	l.insert("A");
+    	l.toFirst();
+    	assertEquals("A", l.getObject());
+    	l.next();
+    	assertEquals(false, l.hasAccess());
+    	l.toFirst();
+    	l.insert(null);
+    	l.toFirst();
+    	assertEquals("A", l.getObject());
+    	l.next();
+    	assertEquals(false, l.hasAccess());
     	l.insert("A");
     	l.toFirst();
     	assertEquals("A", l.getObject());
@@ -170,6 +199,19 @@ public abstract class ListTests {
     	l.append("A");
     	l.append("B");
     	l.concat(null);
+    	l.toFirst();
+    	assertEquals("A", l.getObject());
+    	l.next();
+    	assertEquals("B", l.getObject());
+    	l.next();
+    	assertEquals(false, l.hasAccess());
+    }
+    
+    @Test
+    public void concatTestEmpty() {
+    	l.append("A");
+    	l.append("B");
+    	l.concat(getNewObjectInstanceOfCurrentList());
     	l.toFirst();
     	assertEquals("A", l.getObject());
     	l.next();
