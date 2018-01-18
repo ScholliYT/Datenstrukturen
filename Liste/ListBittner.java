@@ -123,6 +123,10 @@ public class ListBittner extends ListBaseClass
          aktuell.setInhalt(pObject);
          aktuell.setZeiger(oldAkt);
          aktuell = oldAkt;
+         
+         if(aktuell.getZeiger() == null) {
+        	 ende = oldAkt;	 
+         }
       }
    }
       
@@ -164,14 +168,12 @@ public class ListBittner extends ListBaseClass
          else
          {
             aktuell.setInhalt(aktuell.getZeiger().getInhalt());  
-            if(aktuell.getZeiger() != null)
-            {
-               aktuell.setZeiger(aktuell.getZeiger().getZeiger());
-            }
-            else
+            
+            if(aktuell.getZeiger() == ende)
             {
                ende = aktuell;
             }
+            aktuell.setZeiger(aktuell.getZeiger().getZeiger());
          }
          if(anfang == null)
          {

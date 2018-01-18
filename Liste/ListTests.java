@@ -23,6 +23,21 @@ public abstract class ListTests {
     @Test
     public void hasAccessTest() {
         assertEquals(false, l.hasAccess());
+        
+        l.toFirst();
+        assertEquals(false, l.hasAccess());
+        
+        l.append("A");
+        l.toFirst();
+        assertEquals(true, l.hasAccess());
+        
+        l.next();
+        assertEquals(false, l.hasAccess());
+        
+        l.toFirst();
+        l.remove();
+        assertEquals(false, l.hasAccess());
+        
     }   
     
     @Test
@@ -110,6 +125,15 @@ public abstract class ListTests {
     }
     
     @Test
+    public void insertTestBySara() {
+    	l.append("A");
+    	l.toFirst();
+    	l.insert("B");
+    	l.toLast();
+    	assertEquals("A", l.getObject());
+    }
+    
+    @Test
     public void concatTest() {
     	l.append("A");
     	l.append("B");
@@ -134,15 +158,37 @@ public abstract class ListTests {
     	l.append("B");
     	l.append("C");
     	l.append("D");
-    	l.toFirst();
-    	l.remove();
+    	l.toFirst(); // {[A], B, C, D}
+    	l.remove();  // {[B], C, D}
+    	assertEquals("B", l.getObject()); // {[B], C, D}
+    	l.next(); // {B, [C], D}
+    	l.remove(); // {B, [D]}
+    	assertEquals("D", l.getObject()); // {B, [D]}
+    	
+    	
+    	l.toFirst(); // {[B], D}
     	assertEquals("B", l.getObject());
-    	l.toFirst();
-    	l.next();
-    	l.remove();
+    	l.next(); // {B, [D]}
     	assertEquals("D", l.getObject());
-    	l.remove();
+    	l.next();
+    	assertEquals(null, l.getObject());
     	assertEquals(false, l.hasAccess());	
+    	
+    	
+    	l.toLast(); // {B, [D]}
+    	assertEquals("D", l.getObject());
+    	l.remove(); // {B}
+    	assertEquals(false, l.hasAccess());	
+    }
+    
+    @Test
+    public void remvoeTestOneElement() {
+    	l.append("A");
+    	l.toFirst();
+    	assertEquals("A", l.getObject());
+    	l.remove();
+    	assertEquals(false, l.hasAccess());
+    	
     }
     
 }

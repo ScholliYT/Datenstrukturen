@@ -66,6 +66,9 @@ public class ListTom extends ListBaseClass {
 			current.setObject(_pObject);
 			current.setNextNode(oldCurrent);
 			current = oldCurrent; // dont change current 
+			if(current.getNextNode() == null) {
+	        	 end = oldCurrent;	 
+	         }
 		} else if (isEmpty()) {
 			append(_pObject);
 		}
@@ -90,7 +93,11 @@ public class ListTom extends ListBaseClass {
 	@Override
 	public void remove() {
 		if(hasAccess()) {
-			if(current != end) {
+			if(current == end && current == start) {
+				current = null;
+				start = null;
+				end = null;
+			} else if(current != end) {
 				current.setObject(current.getNextNode().getObject());
 				if(current.getNextNode() == end) { // In case we delete the pre last element.
 					end = current;
@@ -128,8 +135,8 @@ public class ListTom extends ListBaseClass {
 			i++;
 			c = c.getNextNode();
 		}
-		System.out.println();
 		return o;
 	}
+	
 }
 
