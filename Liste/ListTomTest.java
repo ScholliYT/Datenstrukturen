@@ -38,5 +38,18 @@ public class ListTomTest extends ListTests {
 		l.remove();
 		assertEquals(new Object[] {"B"}, ((ListTom)l).toArray());
 	}
+	
+	@Test
+	public void clearTest() {
+		assertEquals(false, l.hasAccess());
+		l.append("A");
+		l.append("B");
+		l.append("C");
+		l.append("D");
+		l.toFirst();
+		assertEquals(true, l.hasAccess());
+		((ListTom)l).clear();
+		assertEquals(false, l.hasAccess());
+	}
 
 }

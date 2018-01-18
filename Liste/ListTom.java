@@ -138,5 +138,10 @@ public class ListTom extends ListBaseClass {
 		return o;
 	}
 	
+	public void clear() {
+		start = null;
+		end = null;
+		current = null;
+	}
 }
 
