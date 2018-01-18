@@ -37,7 +37,6 @@ public abstract class ListTests {
         l.toFirst();
         l.remove();
         assertEquals(false, l.hasAccess());
-        
     }   
     
     @Test
@@ -79,6 +78,14 @@ public abstract class ListTests {
     @Test
     public void setObjectTest() {
         l.append("A");
+        l.setObject("AA"); // should not set no Access
+        l.toFirst();
+        assertEquals("A", l.getObject());
+        
+        
+        l.setObject(null); // should not set
+        assertEquals("A", l.getObject());
+        
         l.toFirst();
         l.setObject("AA");
         assertEquals("AA", l.getObject());
@@ -125,6 +132,15 @@ public abstract class ListTests {
     }
     
     @Test
+    public void insertTestOneElement() {
+    	l.insert("A");
+    	l.toFirst();
+    	assertEquals("A", l.getObject());
+    	l.next();
+    	assertEquals(false, l.hasAccess());
+    }
+    
+    @Test
     public void insertTestBySara() {
     	l.append("A");
     	l.toFirst();
@@ -146,18 +162,35 @@ public abstract class ListTests {
     	assertEquals("B", l.getObject());
     	l.next();
     	assertEquals("C", l.getObject());
-    	
     	assertEquals(true, ll.isEmpty());
+    }
+    
+    @Test
+    public void concatTestNull() {
+    	l.append("A");
+    	l.append("B");
+    	l.concat(null);
+    	l.toFirst();
+    	assertEquals("A", l.getObject());
+    	l.next();
+    	assertEquals("B", l.getObject());
+    	l.next();
+    	assertEquals(false, l.hasAccess());
     }
     
     protected abstract ListBaseClass getNewObjectInstanceOfCurrentList();
     
     @Test
     public void removeTest() {
+    	l.remove();   	
+    	assertEquals(true, l.isEmpty());
     	l.append("A");
     	l.append("B");
     	l.append("C");
     	l.append("D");
+    	l.remove();
+    	assertEquals(false, l.isEmpty());
+    	assertEquals(false, l.hasAccess());
     	l.toFirst(); // {[A], B, C, D}
     	l.remove();  // {[B], C, D}
     	assertEquals("B", l.getObject()); // {[B], C, D}
@@ -188,7 +221,23 @@ public abstract class ListTests {
     	assertEquals("A", l.getObject());
     	l.remove();
     	assertEquals(false, l.hasAccess());
-    	
-    }
+    }   
     
+    @Test
+    public void removeTestLastElement() {
+    	l.append("A");
+    	l.append("B");
+    	l.append("C");
+    	l.append("D");
+    	l.append("E");
+    	l.append("F");
+    	l.append("G");
+    	l.append("H");
+    	l.toFirst();
+    	while(l.hasAccess()) {
+    		l.remove();
+    	}
+    	assertEquals(false, l.hasAccess());
+    	assertEquals(true, l.isEmpty());
+    }
 }

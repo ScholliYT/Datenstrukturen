@@ -51,5 +51,4 @@ public class ListTomTest extends ListTests {
 		((ListTom)l).clear();
 		assertEquals(false, l.hasAccess());
 	}
-
 }
