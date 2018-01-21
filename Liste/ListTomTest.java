@@ -171,6 +171,16 @@ public class ListTomTest extends ListTests {
 		assertEquals(true, ((ListTom)l).contains("B"));
 		assertEquals(false, ((ListTom)l).contains("Z"));
 	}
+	@Test
+	public void getFirstTest() {
+		fillList("A", "B", "C");
+		assertEquals("A", ((ListTom)l).getFirst());
+	}
+	@Test
+	public void getLastTest() {
+		fillList("A", "B", "C");
+		assertEquals("C", ((ListTom)l).getLast());
+	}
 	}
 	
 }

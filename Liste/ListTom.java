@@ -179,5 +179,11 @@ public class ListTom extends ListBaseClass {
 		}
 		return false;
 	}
+	public Object getFirst() {
+		return start.getObject();
+	}
+	public Object getLast() {
+		return end.getObject();
+	}
 }
 
