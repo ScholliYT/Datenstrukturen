@@ -140,6 +140,9 @@ public class ListTomTest extends ListTests {
 		assertEquals("D", l.getObject());
 		l.next();
 		assertEquals(false, l.hasAccess());
+
+	}
+	
 	@Test
 	public void deleteDuplicatesTestCurrentDuplicate() {
 		l.append("A");
@@ -165,22 +168,69 @@ public class ListTomTest extends ListTests {
 
 		
 	}
+	
 	@Test
 	public void cointainsTest() {
 		fillList("A", "B", "C");
 		assertEquals(true, ((ListTom)l).contains("B"));
 		assertEquals(false, ((ListTom)l).contains("Z"));
 	}
+	
 	@Test
 	public void getFirstTest() {
 		fillList("A", "B", "C");
 		assertEquals("A", ((ListTom)l).getFirst());
 	}
+	
 	@Test
 	public void getLastTest() {
 		fillList("A", "B", "C");
 		assertEquals("C", ((ListTom)l).getLast());
 	}
+	
+	@Test
+	public void deleteTest() {
+		fillList("A", "B", "C");
+		((ListTom)l).delete("B");
+		l.toFirst();
+		assertEquals("A", l.getObject());
+		l.next();
+		assertEquals("C", l.getObject());
+		l.next();
+		assertEquals(false, l.hasAccess());
+	}
+	
+	@Test
+	public void deleteTestCurrent() {
+		fillList("A", "B", "C");
+		l.toFirst();
+		l.next();
+		((ListTom)l).delete("B");
+		assertEquals(false, l.hasAccess());
+		l.toFirst();
+		assertEquals("A", l.getObject());
+		l.next();
+		assertEquals("C", l.getObject());
+		l.next();
+		assertEquals(false, l.hasAccess());
+	}
+	
+	@Test
+	public void indexOfTest() {
+		fillList("A", "B", "C");
+		((ListTom)l).delete("B");
+		l.toFirst();
+		assertEquals("A", l.getObject());
+		l.next();
+		assertEquals("C", l.getObject());
+		l.next();
+		assertEquals(false, l.hasAccess());
+	}
+	
+	private void fillList(String...strings) {
+		for(String s : strings) {
+			l.append(s);
+		}
 	}
 	
 }

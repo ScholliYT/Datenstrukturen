@@ -147,7 +147,7 @@ public class ListTom extends ListBaseClass {
 	}
 	
 	/**
-	 * deletes all duplicate objects
+	 * deletes all duplicate objects. Don't use for multithread access! -> not threadsave
 	 */
 	public void deleteDublicates() {
 		Node oldCurrent = current;
@@ -162,7 +162,6 @@ public class ListTom extends ListBaseClass {
 				remove();
 			} else {
 				hashi.add(obj);
-				System.out.println("Add to hashset: " + obj.toString());
 				current = current.getNextNode();
 			}
 		}
@@ -179,11 +178,41 @@ public class ListTom extends ListBaseClass {
 		}
 		return false;
 	}
+	
 	public Object getFirst() {
 		return start.getObject();
 	}
+	
 	public Object getLast() {
 		return end.getObject();
+	}
+	
+	public void delete(Object obj) {
+		Node oldCurrent = current;
+		toFirst();
+		while(hasAccess()) {
+			if(getObject().equals(obj)) {
+				if(current == oldCurrent) { // oldCurrent points on a object thats needs to deleted
+					oldCurrent = null;
+				}
+				remove();
+			} 
+			next();
+		}
+		current = oldCurrent; //Put pointer back to his old position
+	}
+	
+	public int indexOf(Object obj) {
+		int index = 0;
+		Node c = start;
+		while(c != null) {
+			if(c.getObject() == obj) {
+				return index;
+			}
+			index++;
+			c = c.getNextNode();
+		}
+		return -1;
 	}
 }
 
