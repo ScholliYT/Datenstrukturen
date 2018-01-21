@@ -78,7 +78,7 @@ public abstract class ListTests {
     @Test
     public void setObjectTest() {
         l.append("A");
-        l.setObject("AA"); // should not set no Access
+        l.setObject("AA"); // should not set (no Access)
         l.toFirst();
         assertEquals("A", l.getObject());
         

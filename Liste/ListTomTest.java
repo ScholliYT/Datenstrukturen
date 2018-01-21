@@ -51,4 +51,95 @@ public class ListTomTest extends ListTests {
 		((ListTom)l).clear();
 		assertEquals(false, l.hasAccess());
 	}
+	
+	@Test
+	public void deleteDublicatesTest() {
+		l.append("A");
+		l.append("B");
+		l.append("A"); // should be deleted
+		l.append("C");
+		l.append("D");
+		((ListTom)l).deleteDublicates();
+		l.toFirst();
+		assertEquals("A", l.getObject());
+		l.next();
+		assertEquals("B", l.getObject());
+		l.next();
+		assertEquals("C", l.getObject());
+		l.next();
+		assertEquals("D", l.getObject());
+		l.next();
+		assertEquals(false, l.hasAccess());
+		
+		
+	}
+	
+	@Test
+	public void deleteDublicatesTestLastIsDuplicate() {
+		l.append("A");
+		l.append("B");
+		l.append("C");
+		l.append("D");
+		l.append("D"); //last is duplicate
+		
+		((ListTom)l).deleteDublicates();
+		l.toFirst();
+		assertEquals("A", l.getObject());
+		l.next();
+		assertEquals("B", l.getObject());
+		l.next();
+		assertEquals("C", l.getObject());
+		l.next();
+		assertEquals("D", l.getObject());
+		l.next();
+		assertEquals(false, l.hasAccess());
+	}
+	
+	@Test
+	public void deleteDublicatesTestDoubleDuplicate() {
+		l.append("A");
+		l.append("B");
+		l.append("A"); // should be deleted
+		l.append("A"); //double duplicates
+		l.append("C");
+		l.append("D");
+			
+		((ListTom)l).deleteDublicates();
+		l.toFirst();
+		assertEquals("A", l.getObject());
+		l.next();
+		assertEquals("B", l.getObject());
+		l.next();
+		assertEquals("C", l.getObject());
+		l.next();
+		assertEquals("D", l.getObject());
+		l.next();
+		assertEquals(false, l.hasAccess());
+	}
+	
+	@Test
+	public void deleteDublicatesTestManyDuplicates() {
+		l.append("A");
+		l.append("B");
+		l.append("C");
+		l.append("D");
+		l.append("D"); //many duplicates
+		l.append("D");
+		l.append("D");
+		l.append("C");
+		l.append("A");
+		
+		((ListTom)l).deleteDublicates();
+		l.toFirst();
+		assertEquals("A", l.getObject());
+		l.next();
+		assertEquals("B", l.getObject());
+		l.next();
+		assertEquals("C", l.getObject());
+		l.next();
+		assertEquals("D", l.getObject());
+		l.next();
+		assertEquals(false, l.hasAccess());
+	}
+	
 }

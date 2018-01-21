@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 public class ListTom extends ListBaseClass {
 	Node start;
 	Node current;
@@ -142,6 +144,29 @@ public class ListTom extends ListBaseClass {
 		start = null;
 		end = null;
 		current = null;
+	}
+	
+	/**
+	 * deletes all duplicate objects
+	 */
+	public void deleteDublicates() {
+		Node oldCurrent = current;
+		toFirst();
+		HashSet<Object> hashi = new HashSet<>();
+		while(hasAccess()) {
+			Object obj = current.getObject();
+			if(hashi.contains(obj)) {
+				if(current == oldCurrent) { // oldCurrent points on a duplicate object thats needs to deleted
+					oldCurrent = null;
+				}
+				remove();
+			} else {
+				hashi.add(obj);
+				System.out.println("Add to hashset: " + obj.toString());
+				current = current.getNextNode();
+			}
+		}
+		current = oldCurrent; //Put pointer back to his old position
 	}
 }
 
