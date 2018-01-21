@@ -168,5 +168,16 @@ public class ListTom extends ListBaseClass {
 		}
 		current = oldCurrent; //Put pointer back to his old position
 	}
+	
+	public boolean contains(Object obj) {
+		Node c = start;
+		while(c.getNextNode() != null) {
+			if(c.getObject().equals(obj)) {
+				return true;
+			}
+			c = c.getNextNode();
+		}
+		return false;
+	}
 }
 

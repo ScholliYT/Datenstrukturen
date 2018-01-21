@@ -140,6 +140,12 @@ public class ListTomTest extends ListTests {
 		assertEquals("D", l.getObject());
 		l.next();
 		assertEquals(false, l.hasAccess());
+	@Test
+	public void cointainsTest() {
+		fillList("A", "B", "C");
+		assertEquals(true, ((ListTom)l).contains("B"));
+		assertEquals(false, ((ListTom)l).contains("Z"));
+	}
 	}
 	
 }

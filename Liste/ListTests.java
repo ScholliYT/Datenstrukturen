@@ -240,7 +240,6 @@ public abstract class ListTests {
     	l.remove(); // {B, [D]}
     	assertEquals("D", l.getObject()); // {B, [D]}
     	
-    	
     	l.toFirst(); // {[B], D}
     	assertEquals("B", l.getObject());
     	l.next(); // {B, [D]}
@@ -248,7 +247,6 @@ public abstract class ListTests {
     	l.next();
     	assertEquals(null, l.getObject());
     	assertEquals(false, l.hasAccess());	
-    	
     	
     	l.toLast(); // {B, [D]}
     	assertEquals("D", l.getObject());
