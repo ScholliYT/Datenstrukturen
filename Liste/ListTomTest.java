@@ -141,6 +141,31 @@ public class ListTomTest extends ListTests {
 		l.next();
 		assertEquals(false, l.hasAccess());
 	@Test
+	public void deleteDuplicatesTestCurrentDuplicate() {
+		l.append("A");
+		l.append("B");
+		l.append("A"); // should be deleted
+		l.append("C");
+		l.append("D");
+		l.toFirst();
+		l.next();
+		l.next();
+		((ListTom)l).deleteDublicates();
+		assertEquals(false, l.hasAccess());
+		l.toFirst();
+		assertEquals("A", l.getObject());
+		l.next();
+		assertEquals("B", l.getObject());
+		l.next();
+		assertEquals("C", l.getObject());
+		l.next();
+		assertEquals("D", l.getObject());
+		l.next();
+		assertEquals(false, l.hasAccess());
+
+		
+	}
+	@Test
 	public void cointainsTest() {
 		fillList("A", "B", "C");
 		assertEquals(true, ((ListTom)l).contains("B"));
