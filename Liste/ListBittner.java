@@ -1,8 +1,8 @@
 public class ListBittner extends ListBaseClass
 {
-   private Knoten anfang;
-   private Knoten ende;
-   private Knoten aktuell;
+   protected Knoten anfang;
+   protected Knoten ende;
+   protected Knoten aktuell;
    
    public ListBittner()
    {

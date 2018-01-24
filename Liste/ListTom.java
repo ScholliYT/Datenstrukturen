@@ -147,7 +147,7 @@ public class ListTom extends ListBaseClass {
 	}
 	
 	/**
-	 * deletes all duplicate objects. Don't use for multithread access! -> not threadsave
+	 * deletes all duplicate objects. DON'T use for multithread access! -> not threadsave
 	 */
 	public void deleteDublicates() {
 		Node oldCurrent = current;
@@ -170,7 +170,7 @@ public class ListTom extends ListBaseClass {
 	
 	public boolean contains(Object obj) {
 		Node c = start;
-		while(c.getNextNode() != null) {
+		while(c != null) {
 			if(c.getObject().equals(obj)) {
 				return true;
 			}
@@ -192,6 +192,21 @@ public class ListTom extends ListBaseClass {
 		toFirst();
 		while(hasAccess()) {
 			if(getObject().equals(obj)) {
+				if(current == oldCurrent) { // oldCurrent points on a object thats needs to deleted
+					oldCurrent = null;
+				}
+				remove();
+			} 
+			next();
+		}
+		current = oldCurrent; //Put pointer back to his old position
+	}
+	
+	public void deleteKind(Object obj) {
+		Node oldCurrent = current;
+		toFirst();
+		while(hasAccess()) {
+			if(getObject().getClass().isInstance(obj)) {
 				if(current == oldCurrent) { // oldCurrent points on a object thats needs to deleted
 					oldCurrent = null;
 				}
